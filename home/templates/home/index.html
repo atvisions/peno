@@ -1,0 +1,285 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PENo.2</title>
+    <link
+      rel="stylesheet"
+      id="google-fonts-1-css"
+      href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMaven+Pro%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7COswald%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap&#038;ver=6.6"
+      media="all"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  </head>
+  <body>
+    <div id="box" class="wrapper">
+      <header>
+        <h1><img src="{% static 'images/logo.png' %}" alt="logo" width="100" /></h1>
+        <nav>
+          <ul>
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#Tokenomics">Tokenomics</a></li>
+            <li><a href="#HowtoBuy">How to Buy</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Partners">Partners</a></li>
+          </ul>
+          <span><a href="https://t.me/PENO22222" target="_blank"><img src="{% static 'images/i2.png' %}" alt="" width="40"/></a></span>
+          <button><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M280-120 80-320l200-200 57 56-104 104h607v80H233l104 104-57 56Zm400-320-57-56 104-104H120v-80h607L623-784l57-56 200 200-200 200Z"/></svg>Peno2 Swap</button>
+        </nav>
+      </header>
+      <section class="section">
+      <h2 id="Home"><img src="{% static 'images/t1.png' %}" alt="Trump Image" width="740" /></h2>
+      <div class="box">
+        <img src="{% static 'images/group30.png' %}" alt="Trump Image" width="1100"/>
+      </div>
+      <div class="box us">
+        <img src="{% static 'images/bg.png' %}" alt="" width="1280"/>
+      </div>
+
+      <div class="box">
+        <div class="boxContent">
+            <p>The rapidly increasing government spending is driving America into bankruptcy, putting enormous debt on every American. $300 billion of taxpayers' money is used to support Ukraine, which has nothing to do with America. Hundreds of billions of taxpayers' money are used to provide safe living conditions for illegal immigrants.
+Disaster relief funds for the American people have been misappropriated for this purpose. Meanwhile, hurricane victims in Florida receive a mere $750 loan in assistance. The Democrats have made everything worse.</p>
+<p>The American dream has shattered. Hardworking Americans are becoming homeless and desperate. The Democrats are doing everything to bring illegal immigrants into America, spending more taxpayer money on them and processing their identification and voting eligibility as quickly as possible. If Trump fails in this election, then four years from now, America will no longer have democracy and freedom. Because the Democrats have filled swing states with illegal immigrants. This election will determine the fate of America and Western civilization.</p>
+        </div>
+      </div>
+      <div class="box" style="margin: 100px 0 0 0;padding:0">
+        <img src="{% static 'images/bg2.png' %}" alt="" width="100%"/>
+      </div>
+
+      <div class="box" style="margin: 0 0 0 0;padding:0">
+        <img src="{% static 'images/bg3.png' %}" alt="" width="100%"/>
+      </div>
+      <div class="box">
+        <h2 style="text-align:left;margin:100px 0"><img src="{% static 'images/bg4.png' %}" alt="" width="439"/></h2>
+        
+        <!-- Only need data for IDs 1 and 2 -->
+        {% for vote in votes %}
+        {% if vote.id == 1 %}
+        <h3>{{ vote.title }}</h3>
+        <div class="VoteWarp box">
+        <div class="VoteLeft">
+          <div class="VoteImg">
+            <img src="{{ vote.voteitem_set.first.image.url }}" alt="" width="200" />          
+            </div>
+            <button id="vote1" class="voteButton" onclick="vote({{ vote.voteitem_set.first.id }})">VOTE</button>
+          </div>
+          <div class="VoteData">
+          
+            <div class="DataNum">
+            
+                <p class="Num1" id="votes-1">{{ vote.voteitem_set.first.count }}</p>
+                <p class="Num2" id="votes-2">{{ vote.voteitem_set.last.count }}</p>
+                         
+            </div>  
+
+          <div class="DataBlock">
+            <!-- Vote count percentage -->
+            <p class="Num1" id="percentage-1" style="width:{{ vote.voteitem_set.first.percent|floatformat:1 }}%;">{{ vote.voteitem_set.first.percent|floatformat:1 }}%</p>
+            <p class="Num2" id="percentage-2" style="width:{{ vote.voteitem_set.last.percent|floatformat:1 }}%;">{{ vote.voteitem_set.last.percent|floatformat:1 }}%</p>
+          </div>
+
+          <div class="VoteName">
+            <div class="VoteName1">{{ vote.voteitem_set.first.vote_name }}</div>
+            <div class="VoteName2">{{ vote.voteitem_set.last.vote_name }}</div>
+          </div>
+        </div>
+
+        <div class="VoteRight">
+          <div class="VoteImg">
+            <img src="{{ vote.voteitem_set.last.image.url }}" alt="" width="200" />
+          </div>
+          <button id="vote{{ vote.voteitem_set.last.id }}" class="voteButton" onclick="vote({{ vote.voteitem_set.last.id }})">VOTE{{ vote.voteitem_set.last.id }}</button>
+          
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+      <div class="box">
+        <img src="{% static 'images/line.png' %}" alt="" width="1280"/>
+      </div>
+      {% for vote in votes %}
+      {% if vote.id == 2 %}
+      <h3>{{ vote.title }}</h3>
+      <div class="box maskVote">
+        <div class="maskVoteContent">
+          <img src="{{ vote.image.url }}" alt="" width="200"/>
+        </div>
+        <div class="maskVoteData">
+            <div class="maskVoteVoteItem">
+              <div class="maskVoteItemName">
+                <p>{{ vote.voteitem_set.first.vote_name }} </p> <span id="votes-3">{{ vote.voteitem_set.first.count }}</span>
+              </div>
+              <div class="maskVoteItemNum">
+                <p id="percentage-3" style="width:{{ vote.voteitem_set.first.percent|floatformat:2 }}%;background:red">{{ vote.voteitem_set.first.percent|floatformat:1 }}% </p><button id="vote3" class="maskVoteItemButton btn1" onclick="vote(3)">Vote</button>
+              </div>
+            </div>
+            <div class="maskVoteVoteItem" style="margin-top:20px">
+              <div class="maskVoteItemName">
+                <p>{{ vote.voteitem_set.last.vote_name }} </p> <span id="votes-4">{{ vote.voteitem_set.last.count }}</span>
+              </div>
+              <div class="maskVoteItemNum">
+                <p id="percentage-4" style="width:{{ vote.voteitem_set.last.percent|floatformat:2 }}%;background:blue">{{ vote.voteitem_set.last.percent|floatformat:1 }}% </p><button id="vote4" class="maskVoteItemButton btn2" onclick="vote(4)">Vote</button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+      
+      <h2 id="Tokenomics"><img src="{% static 'images/Tokenomics.png' %}" alt="" /></h2>
+      <div class="Tokenomics ">
+        <div class="TokenomicsImg">
+          <img src="{% static 'images/token.png' %}" alt="" width="240"/>
+        </div>
+        <div class="TokenomicsContent">
+          <p>Etherscan</p>
+          <p>Token contract address</p>
+          <p id="tokenAddress">0x069aDD965Dd68fC858a11D548168522546b06D94</p>
+        </div>
+        <button onclick="copyToClipboard('tokenAddress')" id="copyButton">Copy to Clipboard</button>
+
+
+      </div>
+    
+      <h2 id="HowtoBuy"><img src="{% static 'images/HowtoBuy.png' %}" alt="" /></h2>
+      <div class="HowtoBuy box">
+        <ul>
+          <li>1. Connect your wallet to the platform.</li>
+          <li>2. Select the token you want to buy.</li>
+          <li>3. Confirm the transaction.</li>
+        </ul>
+      </div>
+
+      <h2 id="About"><img src="{% static 'images/about.png' %}" alt="" /></h2>
+      <div class="About box">
+        <ul>
+          <li>If America falls, nothing else matters.</li>
+          <li>Elon Musk steps up by helping Trump’s campaign to save America.</li>
+          <li>This sends the Democrats into a panic.</li>
+          <li>They portray Elon Musk as PUBLIC ENEMY NO.2 of American citizens through traditional media and encourage assassination.</li>
+          <li>If they succeed, America will fall.</li>
+        </ul>
+      </div>
+
+      <h2 id="Partners">
+      <img src="{% static 'images/Partners.png' %}" alt="" />
+      </h2>
+      <div class="Partners box">
+      <img src="{% static 'images/Partnerss.png' %}" alt="" width="1280"/>
+      </div>
+    </div>
+    </section>
+    <footer>
+      <p>© 2024 by PENO2. All rights reserved </p><span><a href="https://t.me/PENO22222" target="_blank"><img src="{% static 'images/i2.png' %}" alt="" width="30"/></a></span></p>
+    </footer>
+
+    <!-- Success modal -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Vote Successful!</h2>
+        <p id="successMessage">Thank you for your vote!</p>
+    </div>
+</div>
+    <script>
+    function vote(itemId) {
+    console.log('Current clicked vote button ID:', itemId);
+
+    const url = `/vote/${itemId}/`;  // Vote URL
+    const csrfToken = '{{ csrf_token }}';  // CSRF token
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken,
+        },
+        data: {},
+        success: function(data) {
+            handleVoteSuccess(data);
+        },
+        error: function(xhr, status, error) {
+            handleVoteError(error);
+        }
+    });
+}
+
+function handleVoteSuccess(data) {
+    if (data.status === 'success') {
+        // Update the current vote item's display
+        const voteItemId = data.vote_item_id; // Current vote item's ID
+        const count = data.count; // Current vote item's count
+        const percent = data.percent; // Current vote item's percentage
+
+        // Update count and percentage
+        updateVoteDisplay(voteItemId, count, percent);
+        
+        // Show success modal
+        showModal(data.message);  // Show success message
+    } else {
+        alert(data.message);  // Show vote failure message
+    }
+}
+
+function showModal(message) {
+    document.getElementById('successMessage').innerText = message; // Set message content
+    document.getElementById('successModal').style.display = 'block'; // Show modal window
+}
+
+function closeModal() {
+    document.getElementById('successModal').style.display = 'none'; // Hide modal window
+}
+
+function handleVoteError(error) {
+    console.error('Vote failed:', error);
+    alert('Vote failed, please try again.');  // Show general error message
+}
+
+function updateVoteDisplay(voteItemId, count, percent) {
+    // Update vote count
+    const voteItem = document.getElementById(`votes-${voteItemId}`);
+    if (voteItem) {
+        voteItem.innerText = `${count}`;  // Update count
+    } else {
+        console.error('Vote item not found:', voteItemId);
+    }
+
+    // Update percentage and width
+    const percentageElement = document.getElementById(`percentage-${voteItemId}`);
+    if (percentageElement) {
+        percentageElement.style.width = `${percent.toFixed(1)}%`;  // Update width
+        percentageElement.innerText = `${percent.toFixed(1)}%`;  // Update percentage text
+    } else {
+        console.error('Percentage item not found:', voteItemId);
+    }
+}
+
+function copyToClipboard(elementId) {
+    const text = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        // 获取按钮元素
+        const button = document.getElementById('copyButton'); // 假设按钮的 ID 是 'copyButton'
+        
+        // 更改按钮文字为“复制成功”
+        button.innerText = 'Copied';
+
+        // 1秒后恢复按钮文字
+        setTimeout(() => {
+            button.innerText = 'Copy to Clipboard';
+        }, 1000);
+    }).catch(err => {
+        console.error('Copy Failure:', err);
+    });
+}
+    </script>
+  </body>
+</html>
